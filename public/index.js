@@ -1,7 +1,7 @@
 let model
 
 async function loadModel(){
-    model = await tf.loadLayersModel('https://raw.githubusercontent.com/Rhygon1/distracted-tfjs/main/model.json')
+    model = await tf.loadLayersModel('https://raw.githubusercontent.com/Rhygon1/test/main/model.json')
 }
 
 loadModel()
@@ -40,7 +40,7 @@ function handleImageLoading(src){
     }    
 }
 
-document.querySelector("#magic").addEventListener('click', () => {
+document.querySelector("#predict").addEventListener('click', () => {
     document.querySelector('p').innerText = `...Loading`
     let p = document.querySelector('.hidden').getContext('2d').getImageData(0, 0, 64, 64).data
     let pixels = Array.from(p.filter((pixel, idx) => (idx+1)%4!==0))
