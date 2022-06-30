@@ -2,6 +2,7 @@ let model
 
 async function loadModel(){
     model = await tf.loadLayersModel('https://raw.githubusercontent.com/Rhygon1/test/main/model.json')
+    model.summary()
 }
 
 loadModel()
