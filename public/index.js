@@ -1,6 +1,3 @@
-let input = document.getElementById('input');
-input.addEventListener('change', handleFiles);
-
 let model
 
 async function loadModel(){
@@ -9,10 +6,22 @@ async function loadModel(){
 
 loadModel()
 
-function handleFiles(e) {
+let input = document.getElementById('input');
+input.addEventListener('change', (e) => {
+    handleImageLoading(URL.createObjectURL(e.target.files[0]))
+});
+
+let images = document.querySelectorAll('img')
+images.forEach(im => {
+    im.addEventListener('click', () => {
+        handleImageLoading(im.src)
+    })
+})
+
+function handleImageLoading(src){
     let ctx = document.getElementById('canvas').getContext('2d');
     let img = new Image;
-    img.src = URL.createObjectURL(e.target.files[0]);
+    img.src = src
     img.onload = () => {
         ctx.drawImage(img, 0, 0, document.getElementById('canvas').width, document.getElementById('canvas').height);
 
@@ -28,7 +37,7 @@ function handleFiles(e) {
             }
         }
         document.querySelector('.hidden').getContext('2d').putImageData(imageData, 0, 0)
-    }
+    }    
 }
 
 document.querySelector("#magic").addEventListener('click', () => {
@@ -43,29 +52,4 @@ document.querySelector("#magic").addEventListener('click', () => {
     } else {
         document.querySelector('p').innerText = `The AI predicted the driver to be Distracted`
     }
-})
-
-let images = document.querySelectorAll('img')
-images.forEach(im => {
-    im.addEventListener('click', () => {
-        let ctx = document.getElementById('canvas').getContext('2d');
-        let img = new Image;
-        img.src = im.src
-        img.onload = () => {
-            ctx.drawImage(img, 0, 0, document.getElementById('canvas').width, document.getElementById('canvas').height);
-
-            document.querySelector('.hidden').getContext('2d').drawImage(img, 0, 0, 64, 64);
-            let imageData = document.querySelector('.hidden').getContext('2d').getImageData(0, 0, 64, 64)
-            let data = imageData.data
-            for(let i = 15; i<30; i++){
-                for(let j = 15; j<30; j++){
-                    data[i*64*4 + (j*4)] = (0.75*255)
-                    data[i*64*4 + (j*4) + 1] = (0.2*255)
-                    data[i*64*4 + (j*4) + 2] = (0.2*255)
-                    data[i*64*4 + (j*4) + 3] = 255
-                }
-            }
-            document.querySelector('.hidden').getContext('2d').putImageData(imageData, 0, 0)
-        }
-    })
 })
