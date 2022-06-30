@@ -15,8 +15,7 @@ app.use(bodyParser.urlencoded({limit: "2mb", extended: true, parameterLimit:5000
 let model
 
 async function loadModel(){
-    const handler = tfn.io.fileSystem("./tfjs/model.json");
-    model = await tf.loadLayersModel(handler);
+    model = await tf.loadLayersModel("https://raw.githubusercontent.com/Rhygon1/Distracted-drivers/main/tfjs/model.json");
 }
 
 loadModel()
