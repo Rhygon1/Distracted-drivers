@@ -1,6 +1,5 @@
 const {reshape, divide} = require('mathjs')
 const tf = require("@tensorflow/tfjs");
-const tfn = require("@tensorflow/tfjs-node");
 const express = require('express')
 const app = express()
 const PORT = process.env.PORT || 3000
