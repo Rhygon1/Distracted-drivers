@@ -24,6 +24,7 @@ function handleFiles(e) {
 }
 
 document.querySelector("#magic").addEventListener('click', () => {
+    document.querySelector('p').innerText = `...Loading`
     let p = document.querySelector('.hidden').getContext('2d').getImageData(0, 0, 64, 64).data
     let pixels = p.filter((pixel, idx) => (idx+1)%4!==0)
     let myHeaders = new Headers();
