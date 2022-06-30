@@ -1,6 +1,14 @@
 let input = document.getElementById('input');
 input.addEventListener('change', handleFiles);
 
+let model
+
+async function loadModel(){
+    model = await tf.loadLayersModel('https://raw.githubusercontent.com/Rhygon1/distracted-tfjs/main/model.json')
+}
+
+loadModel()
+
 function handleFiles(e) {
     let ctx = document.getElementById('canvas').getContext('2d');
     let img = new Image;
@@ -26,24 +34,15 @@ function handleFiles(e) {
 document.querySelector("#magic").addEventListener('click', () => {
     document.querySelector('p').innerText = `...Loading`
     let p = document.querySelector('.hidden').getContext('2d').getImageData(0, 0, 64, 64).data
-    let pixels = p.filter((pixel, idx) => (idx+1)%4!==0)
-    let myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
-
-    let urlencoded = new URLSearchParams();
-    urlencoded.append("data", JSON.stringify(pixels));
-
-    let requestOptions = {
-        method: 'POST',
-        headers: myHeaders,
-        body: urlencoded,
-        redirect: 'follow'
-    };
-
-    fetch("/magic", requestOptions)
-    .then(response => response.text())
-    .then(result => document.querySelector('p').innerText = `The AI predicted the image to be ${result}`)
-    .catch(error => console.log('error', error));
+    let pixels = Array.from(p.filter((pixel, idx) => (idx+1)%4!==0))
+    pixels = math.divide(pixels, 255)
+    pixels = tf.tensor4d([math.reshape(pixels, [64, 64, 3]),])
+    let result = model.predict(pixels).arraySync()[0]
+    if(result[0] > result[1]){
+        document.querySelector('p').innerText = `The AI predicted the driver to be Attentive`
+    } else {
+        document.querySelector('p').innerText = `The AI predicted the driver to be Distracted`
+    }
 })
 
 let images = document.querySelectorAll('img')
