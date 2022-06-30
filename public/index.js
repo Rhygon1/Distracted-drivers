@@ -39,7 +39,7 @@ document.querySelector("#magic").addEventListener('click', () => {
         redirect: 'follow'
     };
 
-    fetch("http://localhost:3000/magic", requestOptions)
+    fetch("/magic", requestOptions)
     .then(response => response.text())
     .then(result => document.querySelector('p').innerText = `The AI predicted the image to be ${result}`)
     .catch(error => console.log('error', error));
