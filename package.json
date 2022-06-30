@@ -1,11 +1,13 @@
 {
   "name": "distracted-drivers",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
+  },
+  "engines": {
+    "node": "16.4.0"
   },
   "keywords": [],
   "author": "",
@@ -19,5 +21,14 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.18"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rhygon1/Distracted-drivers.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Rhygon1/Distracted-drivers/issues"
+  },
+  "homepage": "https://github.com/Rhygon1/Distracted-drivers#readme",
+  "description": ""
 }
