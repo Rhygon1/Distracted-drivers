@@ -44,12 +44,14 @@ document.querySelector("#magic").addEventListener('click', () => {
     document.querySelector('p').innerText = `...Loading`
     let p = document.querySelector('.hidden').getContext('2d').getImageData(0, 0, 64, 64).data
     let pixels = Array.from(p.filter((pixel, idx) => (idx+1)%4!==0))
-    pixels = math.divide(pixels, 255)
-    pixels = tf.tensor4d([math.reshape(pixels, [64, 64, 3]),])
-    let result = model.predict(pixels).arraySync()[0]
-    if(result[0] > result[1]){
-        document.querySelector('p').innerText = `The AI predicted the driver to be Attentive`
-    } else {
-        document.querySelector('p').innerText = `The AI predicted the driver to be Distracted`
-    }
+    tf.tidy(() => {
+        pixels = tf.tensor([pixels]).reshape([1, 64, 64, 3])
+        pixels = tf.div(pixels, 255)
+        let result = model.predict(pixels).arraySync()[0]
+        if(result[0] > result[1]){
+            document.querySelector('p').innerText = `The AI predicted the driver to be Attentive`
+        } else {
+            document.querySelector('p').innerText = `The AI predicted the driver to be Distracted`
+        }
+    })
 })
