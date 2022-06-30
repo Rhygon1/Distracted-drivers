@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="column left">
+        <img src="/Images/1.png"></img>
+        <img src="/Images/2.png"></img>
+        <img src="/Images/3.png"></img>
+    </div>
+    <div class="column center">
+        <label for="input" class="inputs">
+            Select Image
+            <input type="file" id="input" style='display: none;'/>
+        </label>
+        <canvas width="300" height="300" id="canvas"></canvas>
+        <canvas width="64" height="64" class="hidden" ></canvas>
+        <button id="magic" class="inputs">Predict</button>
+        <p id="result"></p>
+    </div>
+    <div class="column right">
+        <img src="/Images/4.png"></img>
+        <img src="/Images/5.png"></img>
+        <img src="/Images/6.png"></img>
+    </div>
+    <script src="index.js"></script>
+</body>
+</html>

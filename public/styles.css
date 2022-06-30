@@ -1,0 +1,101 @@
+*{
+    margin: 0%;
+    box-sizing: border-box;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+body{
+    background-color: rgb(1, 1, 26);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.column{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.center{
+    margin-right: 15%;
+    margin-left: 15%;
+}
+
+.left{
+    align-items: center;
+    justify-content: center;
+}
+
+.right{
+    align-items: center;
+    justify-content: center;
+}
+
+canvas{
+    margin: 5%;
+    border: 3px solid rgb(7, 7, 7);
+}
+
+#canvas{
+    width: 100%;
+    height: 100%;
+    transition: 0.3s;
+}
+
+#canvas:hover{
+    width: 115%;
+    height: 115%;
+}
+
+.hidden{
+    width: 64px;
+    height: 64px;
+    transition: 0.2s;
+}
+
+.hidden:hover{
+    width: 80px;
+    height: 80px;
+}
+
+.inputs{
+    margin-top: 20%;
+    margin-bottom: 20%;
+    background-color: rgb(23, 23, 23);
+    width: 70%;
+    height: 50px;
+    border: 1px solid rgb(196, 196, 196);
+    border-radius: 50px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.4em;
+    transition: 0.5s;
+}
+
+.inputs:hover{
+    background-color: white;
+    border: 1px solid rgb(40, 40, 40);
+    color: black;
+}
+
+p{
+    color: white
+}
+
+img{
+    height: 100%;
+    width: 100%;
+    border: 3px solid rgb(23, 23, 23);
+    margin-top: 27%;
+    transition: 0.3s;
+}
+
+img:hover{
+    height: 120%;
+    width: 120%;
+    margin: 3%;
+}
