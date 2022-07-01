@@ -3,8 +3,6 @@ let model
 async function loadModel(){
     model = await tf.loadLayersModel('https://raw.githubusercontent.com/Rhygon1/test/main/model.json')
     model.summary()
-    let random = tf.fill([1, 64, 64, 3], 1)
-    model.predict(random)
 }
 
 loadModel()
