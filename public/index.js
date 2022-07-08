@@ -5,6 +5,7 @@ async function loadModel(){
     model.summary()
 }
 
+
 loadModel()
 
 let input = document.getElementById('input');
